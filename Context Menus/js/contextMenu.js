@@ -9,7 +9,7 @@
         type        - Type of menu item (critical, warning, success, info)
 */
 
-function showContextMenu(obj, menu) {
+function showContextMenu(obj, menu, position='mouse') {
     // If the context menu is already open, close it first
     if (document.querySelector(".contextMenu")) {
         dissmissContextMenu();
@@ -85,28 +85,43 @@ function showContextMenu(obj, menu) {
     document.body.appendChild(contextMenu);
     document.body.appendChild(closeSpan);
 
-    // Get position of the item clicked or the mouse
-    try {
+    if (position == 'mouse') {
         var posX = event.clientX + 5;
         var posY = event.clientY + 5;
-    } catch (error) {
-        var posX = obj.offsetLeft + (bj.offsetWidth * 0.6) + 2;
-        var posY = obj.offsetTop + obj.offsetHeight + 2
+    } else if (position == 'button') {
+        var posX = obj.offsetLeft + (obj.offsetWidth / 2) - (contextMenu.offsetWidth / 2);
+        var posY = obj.offsetTop + obj.offsetHeight + 5;
+    } else if (position == 'center') {
+        var posX = (window.innerWidth / 2) - (contextMenu.offsetWidth / 2);
+        var posY = (window.innerHeight / 2) - (contextMenu.offsetHeight / 2);
+    } else {
+        var posX = event.clientX + 5;
+        var posY = event.clientY + 5;
     }
-
+    
     // Move the context menu if it is off the screen
     if (posX + contextMenu.offsetWidth > window.innerWidth) {
         posX = window.innerWidth - (contextMenu.offsetWidth + 5);
+    } else if (posX < 0) {
+        posX = 5;
     }
-    if (posY + contextMenu.offsetHeight > window.innerHeight) {
-        posY = window.innerHeight - (contextMenu.offsetHeight + 5);
+    if (posY < 0) {
+        posY = 5;
     }
-
     contextMenu.style.left = posX + "px";
     contextMenu.style.top = posY + "px";
 
+    // Timeout otherwise animation doesn't work
     setTimeout(function() {
-        contextMenu.classList.add("contextMenu__show");
+        if (position == 'mouse') {
+            contextMenu.classList.add("contextMenu__show--mouse");
+        } else if (position == 'button') {
+            contextMenu.classList.add("contextMenu__show--button");
+        } else if (position == 'center') {
+            contextMenu.classList.add("contextMenu__show--center");
+        } else {
+            contextMenu.classList.add("contextMenu__show");
+        }
     }, 1);
 }
 
@@ -128,3 +143,10 @@ function dissmissContextMenu() {
         }, 500);
     });
 }
+
+window.addEventListener("resize", function() {
+    // If the context menu is already open, close it first
+    if (document.querySelector(".contextMenu")) {
+        dissmissContextMenu();
+    }
+});

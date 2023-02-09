@@ -1,0 +1,376 @@
+$red: rgb(182, 100, 103)
+$orange: rgb(206, 170, 111)
+$yellow: rgb(217, 188, 140)
+$green: rgb(140, 151, 125)
+$blue: rgb(141, 163, 185)
+$purple: rgb(169, 136, 176)
+
+$fg100: rgb(248,248,250)
+$fg200: rgb(225,227,233)
+$fg300: rgb(203,205,216)
+$fg400: rgb(180,184,200)
+$fg500: rgb(146,150,169)
+$fg600: rgb(78,83,106)
+
+$bg100: rgb(61,66,83)
+$bg200: rgb(50,54,68)
+$bg300: rgb(42,45,57)
+$bg400: rgb(37,39,50)
+$bg500: rgb(32,35,44)
+$bg600: rgb(28,30,38)
+
+$primary: $blue
+$success: $green
+$warning: $orange
+$critical: $red
+
+*
+    box-sizing: border-box
+
+html
+    margin: 0
+    padding: 0.5rem
+
+    height: 100vh
+    
+    font-size: 16px
+    font-family: 'Roboto', sans-serif
+    font-weight: 400
+
+    color: $fg100
+    background-color: $bg500
+
+body
+    margin: 0
+    padding: 0
+
+    width: 100%
+    height: 100%
+
+    display: grid
+    grid-template-columns: 20rem 1fr
+    grid-template-rows: 1fr
+    grid-template-areas: "sidebar content"
+
+    border: 1px solid $bg200
+    border-radius: 6px
+
+    overflow: hidden
+
+    > button
+        margin: 0
+        padding: 0.5rem 1rem
+
+        width: auto
+        height: 3rem
+
+        display: flex
+        justify-content: center
+        align-items: center
+
+        color: $fg100
+        background-color: $bg300
+        border: 1px solid $bg200
+        border-radius: 3px
+
+        cursor: pointer
+        
+        transition: all 0.2s ease-in-out
+
+        &:hover
+            background-color: $bg200
+
+nav
+    margin: 0
+    padding: 0.5rem
+
+    width: 100%
+    height: 100%
+    
+    grid-area: sidebar
+
+    display: flex
+    flex-direction: column
+    justify-content: flex-start
+    align-items: flex-start
+    gap: 0.5rem
+
+    border-right: 1px solid $bg200
+
+    > button
+        margin: 0
+        padding: 0.5rem
+
+        width: 100%
+        height: auto
+
+        display: flex
+        justify-content: flex-start
+        align-items: center
+
+        color: $fg400
+        background-color: transparent
+        border: none
+        border-radius: 3px
+
+        cursor: pointer
+        
+        transition: all 0.2s ease-in-out
+
+        &:hover
+            background-color: $bg400
+    
+    > hr
+        margin: 0 auto
+        padding: 0
+
+        width: 100%
+        height: 1px
+
+        border: none
+        background-color: $bg200
+
+main
+    margin: 0
+    padding: 0.5rem
+
+    width: 100%
+    height: 100%
+
+    grid-area: content
+
+    display: flex
+    flex-direction: column
+    justify-content: flex-start
+    align-items: flex-start
+    gap: 0.5rem
+
+    > button
+        margin: 0
+        padding: 0.5rem 1rem
+
+        width: auto
+        height: 3rem
+
+        display: flex
+        justify-content: center
+        align-items: center
+
+        color: $fg100
+        background-color: $bg300
+        border: 1px solid $bg200
+        border-radius: 3px
+
+        cursor: pointer
+        
+        transition: all 0.2s ease-in-out
+
+        &:hover
+            background-color: $bg200
+
+.code-block
+    margin: 0
+    padding: 0
+
+    width: 100%
+    height: auto
+
+    border: 1px solid $bg200
+    border-radius: 6px
+
+    color: $fg100
+    background-color: $bg600
+
+    overflow: hidden
+
+    pre
+        margin: 0
+        padding: 0.5rem
+
+        white-space: pre-wrap
+
+        display: block
+
+        font-size: 0.8rem
+        font-weight: 400
+
+.code-header
+    margin: 0
+    padding: 0.3rem 0.3rem 0.3rem 0.8rem
+
+    width: 100%
+    height: auto
+
+    display: flex
+    flex-direction: row
+    justify-content: space-between
+    align-items: center
+
+    background-color: $bg500
+    border-bottom: 1px solid $bg200
+
+    p
+        margin: 0
+        padding: 0
+
+        width: auto
+        height: auto
+
+        font-size: 1rem
+        font-weight: 400
+        color: $fg400
+
+    button
+        margin: 0
+        padding: 0.25rem 0.5rem
+
+        display: flex
+        justify-content: center
+        align-items: center
+
+        color: $fg100
+        background-color: $bg500
+        border: none
+        border-radius: 3px
+
+        cursor: pointer
+
+        &:hover
+            background-color: $bg200
+
+.contextMenuClose
+    width: 100vw
+    height: 100vh
+
+    position: fixed
+    top: 0
+    left: 0
+
+    background-color: transparent
+    z-index: 99998
+
+.contextMenu
+    margin: 0
+    padding: 0.25rem
+
+    width: calc( 100vw - 10px )
+    height: auto
+    max-width: 300px
+
+    position: absolute
+
+    display: flex
+    flex-direction: column
+    justify-content: flex-start
+    align-items: flex-start
+    gap: 0.25rem
+
+    background-color: $bg300
+    border: 1px solid $bg200
+    border-radius: 6px
+
+    overflow: hidden
+
+    transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out
+    transform-origin: center center
+    opacity: 0.5
+    transform: scale(0, 0)
+    z-index: 99999
+
+.contextMenuTitle
+    margin: 0
+    padding: 0.25rem 0.5rem
+
+    width: 100%
+
+    text-align: center
+    font-size: 1.2rem
+    font-weight: 400
+    color: $fg300
+
+.contextMenuItem
+    margin: 0
+    padding: 0.5rem
+
+    width: 100%
+    height: auto
+
+    display: flex
+    flex-direction: row
+    justify-content: flex-start
+    align-items: center
+    gap: 0.5rem
+
+    background-color: $bg300
+    color: $fg300
+    border: none
+    border-radius: 3px
+
+    cursor: pointer
+.contextMenuItem:hover
+    background-color: $bg200
+.contextMenuItem__critical
+    color: $critical
+//.contextMenuItem__critical:hover
+//    background-color: rgba($critical, 0.1)
+.contextMenuItem__warning
+    color: $warning
+//.contextMenuItem__warning:hover
+//    background-color: rgba($warning, 0.1)
+.contextMenuItem__success
+    color: $success
+//.contextMenuItem__success:hover
+//    background-color: rgba($success, 0.1)
+.contextMenuItem__info
+    color: $primary
+//.contextMenuItem__info:hover
+//    background-color: rgba($primary, 0.1)
+
+.contextMenuText
+    margin: 0
+    padding: 0
+
+    font-size: 1rem
+    font-weight: 400
+
+.contextMenuIcon
+    margin: 0
+    padding: 0
+
+    width: 1.25rem
+    height: 1.25rem
+
+    display: flex
+    justify-content: center
+    align-items: center
+
+.contextMenuDivider
+    margin: 0 auto
+    padding: 0
+
+    width: 100%
+    height: 1px
+
+    border: none
+    background-color: $bg200
+
+.contextMenu__show
+    opacity: 1
+    transform: scale(1, 1)
+
+.contextMenu__show--mouse
+    opacity: 1
+    transform: scale(1, 1)
+    transform-origin: top left
+.contextMenu__show--button
+    opacity: 1
+    transform: scale(1, 1)
+    transform-origin: top center
+.contextMenu__show--center
+    opacity: 1
+    transform: scale(1, 1)
+    transform-origin: center center
+
+.contextMenu__hide
+    opacity: 0
+    transform: scale(0, 0)

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS menus</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/main.js"></script>
+    <script src="js/examples.js"></script>
+    <script src="js/contextMenu.js"></script>
+</head>
+
+<body>
+    <nav>
+        <button>Context Menus</button>
+        <button>Dropdowns</button>
+        <button>Modals</button>
+        <hr>
+        <button>Code blocks</button>
+    </nav>
+    <main>
+        <button onclick="contextAtMouse(this)">Mouse</button>
+        <button onclick="contextAtButton(this)">Button</button>
+        <button onclick="contextAtCenter(this)">Center</button>
+        <button onclick="contextImageAction(this)">Image actions</button>
+
+        <div class="code-block">
+            <div class="code-header">
+                <p>Json</p>
+                <button>Copy</button>
+            </div>
+            <pre>
+{
+    'value': 'Edit',
+    'icon': edit,
+    'function': dissmissContextMenu,
+    'type': 'critical'
+},
+{
+    'value': 'Copy',
+    'icon': copy,
+    'function': copyToClipboard,
+    'type': 'normal'
+},
+            </pre>
+        </div>
+    </main>
+</body>
+</html>
